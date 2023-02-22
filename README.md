@@ -11,7 +11,7 @@ permcot [-u] <number or -rwxrwxrwx> ...
 
 ## Examples
 
-### "rwx" format to octal
+### Conversion from octal format to "rwx"
 ```
 $ permcot 4543 22 1701 532 3666
 -r-sr---wx
@@ -21,7 +21,7 @@ $ permcot 4543 22 1701 532 3666
 -rw-rwSrwT
 ```
 
-### Octal format to "rwx"
+### Conversion from "rwx" format to octal
 ```
 $ permcot -rwxrw-r-T dr-sr--rwx crwsrwsrwt lrwx------ -r--r--r--
 1764
@@ -43,7 +43,7 @@ $ permcot 676 7777 -rwxrw-r-T 3444 dr-sr--rwx lrwx------ 1774
 -rwxrwxr-T
 ```
 
-### "umask" mode
+### Using "umask" mode
 ```
 $ permcot -u 0002 -r--r--r-- -rwx------ 0223 0565
 -rw-rw-r--     drwxrwxr-x
@@ -55,7 +55,7 @@ $ permcot -u 0002 -r--r--r-- -rwx------ 0223 0565
 
 ## Usage in conjunction with other utilities
 
-### "chmod" (change file permissions)
+### Using "chmod" (change file permissions)
 ```
 touch myfile
 $ ls -l myfile
@@ -65,7 +65,7 @@ $ ls -l myfile
 -rwxrwSr-- 1 bs0dd bs0dd 0 lip 15 16:28 myfile
 ```
 
-### "ls" and "cut" (get file permissions in octal format)
+### Using "ls" and "cut" (get file permissions in octal format)
 ```
 $ ls -l myfile 
 -rwxrwSr-- 1 bs0dd bs0dd 0 lip 15 16:28 myfile
@@ -73,7 +73,7 @@ $ permcot `ls -l myfile | cut -d' ' -f1`
 2764
 ```
 
-### "umask" (current permissions) 
+### Using "umask" (get current permissions) 
 ```
 $ umask
 0022
@@ -85,7 +85,7 @@ drwxr-xr-x 2 bs0dd bs0dd 4096 lip 15 16:45 newdir
 -rw-r--r-- 1 bs0dd bs0dd    0 lip 15 16:45 newfile
 ```
 
-### "umask" (set new permissions) 
+### Using "umask" (set new permissions) 
 ```
 $ umask `permcot -u -rwxr--r-x`
 $ mkdir newdir && touch newfile
